@@ -8,8 +8,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.Date;
+import java.util.NoSuchElementException;
 
 public class BasicSelenium {
 
@@ -19,6 +24,10 @@ public class BasicSelenium {
     public void setup() {
         System.setProperty("webdriver.chrome.driver", "src/test/resources/driver/chromedriver.exe");
         driver = new ChromeDriver();
+        // implicit
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+        // page load wait
+        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(15));
         driver.get("http://todo.ly/");
     }
 
@@ -35,7 +44,15 @@ public class BasicSelenium {
         driver.findElement(By.id("ctl00_MainContent_LoginControl1_TextBoxEmail")).sendKeys("boris@gmail.com");
         driver.findElement(By.id("ctl00_MainContent_LoginControl1_TextBoxPassword")).sendKeys("123456");
         driver.findElement(By.id("ctl00_MainContent_LoginControl1_ButtonLogin")).click();
-        Thread.sleep(1000);
+        //Thread.sleep(1000);
+        // Explicit Wait
+        //WebDriverWait explicitWait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        //explicitWait.until(ExpectedConditions.elementToBeClickable(By.id("ctl00_HeaderTopControl1_LinkButtonLogout")));
+        FluentWait fluentWait = new FluentWait<>(driver).withTimeout(Duration.ofSeconds(15))
+                        .pollingEvery(Duration.ofSeconds(100))
+                                .ignoring(NoSuchElementException.class);
+        fluentWait.until(ExpectedConditions.elementToBeClickable(By.id("ctl00_HeaderTopControl1_LinkButtonLogout")));
+
         Assertions.assertTrue(driver.findElement(By.id("ctl00_HeaderTopControl1_LinkButtonLogout")).isDisplayed()
                 , "ERROR login was incorrect");
 
