@@ -8,8 +8,7 @@ import java.util.Date;
 
 public class SendMailTest extends TestBase {
     @Test
-    public void verifySendMail() throws InterruptedException {
-        //String addressCreated = "boris" + new Date().getTime();
+    public void verifySendMail() {
         String addressCreated = "boris2022";
         String subjectCreated = "subject" + new Date().getTime();
         String bodyCreated = "body" + new Date().getTime();

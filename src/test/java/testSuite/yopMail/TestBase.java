@@ -14,7 +14,7 @@ public class TestBase {
     InboxSection inboxSection = new InboxSection();
     @BeforeEach
     public void openBrowser() {
-        Session.getInstance().getBrowser().get("https://yopmail.com/");
+        Session.getInstance().getBrowser().get(GetProperties.getInstance().getHostYopMail());
     }
 
     @AfterEach
