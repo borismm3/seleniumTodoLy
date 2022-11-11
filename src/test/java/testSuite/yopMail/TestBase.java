@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import page.yopMail.*;
 import session.Session;
 import util.GetProperties;
+import util.GetPropertiesYopMail;
 
 public class TestBase {
     MainPage mainPage = new MainPage();
@@ -12,9 +13,10 @@ public class TestBase {
     InboxHeaderSection inboxHeaderSection = new InboxHeaderSection();
     MailSection mailSection = new MailSection();
     InboxSection inboxSection = new InboxSection();
+    String user = GetPropertiesYopMail.getInstance().getUser();
     @BeforeEach
     public void openBrowser() {
-        Session.getInstance().getBrowser().get(GetProperties.getInstance().getHostYopMail());
+        Session.getInstance().getBrowser().get(GetPropertiesYopMail.getInstance().getHost());
     }
 
     @AfterEach

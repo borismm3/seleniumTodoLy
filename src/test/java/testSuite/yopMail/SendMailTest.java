@@ -9,20 +9,19 @@ import java.util.Date;
 public class SendMailTest extends TestBase {
     @Test
     public void verifySendMail() {
-        String addressCreated = "boris2022";
         String subjectCreated = "subject" + new Date().getTime();
         String bodyCreated = "body" + new Date().getTime();
 
-        mainPage.addressTextBox.setText(addressCreated);
+        mainPage.addressTextBox.setText(user);
         mainPage.arrowButton.click();
-        Assertions.assertTrue(accountSection.getAddress(addressCreated).isControlDisplayed(), "ERROR! The login has failed");
+        Assertions.assertTrue(accountSection.isAddressDisplayed(user), "ERROR! The login has failed");
 
         inboxHeaderSection.newMail.click();
 
         Session.getInstance().switchIFrameMail();
-        mailSection.sendNewMail(addressCreated, subjectCreated, bodyCreated);
+        mailSection.sendNewMail(user, subjectCreated, bodyCreated);
         mailSection.mailDispatchedLabel.waitControlIsNotInThePage();
-        Assertions.assertTrue(mailSection.mailDispatchedLabel.isControlDisplayed(), "ERROR! The mail has not been dispatched");
+        Assertions.assertTrue(mailSection.isMessageDisplayed(), "ERROR! The mail has not been dispatched");
 
         Session.getInstance().switchIFrameParent();
         inboxHeaderSection.refreshInbox.click();

@@ -18,4 +18,9 @@ public class MailSection {
         bodyMailTextBox.setText(bodyMail);
         sendMailButton.click();
     }
+
+    public boolean isMessageDisplayed() {
+        Label mailDispatchedLabel = new Label(By.id("msgpopmsg"));
+        return mailDispatchedLabel.isControlDisplayed();
+    }
 }

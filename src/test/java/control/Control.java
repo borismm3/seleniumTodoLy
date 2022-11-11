@@ -2,11 +2,13 @@ package control;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import session.Session;
 
 import java.time.Duration;
+import java.util.List;
 
 public class Control {
 
@@ -43,5 +45,11 @@ public class Control {
     public void waitControlIsNotInThePage() {
         WebDriverWait explicitWait = new WebDriverWait(Session.getInstance().getBrowser(), Duration.ofSeconds(5));
         explicitWait.until(ExpectedConditions.visibilityOfElementLocated(this.locator));
+    }
+
+    public void hoverElement() {
+        this.find();
+        Actions actions = new Actions(Session.getInstance().getBrowser());
+        actions.moveToElement(this.control).perform();
     }
 }

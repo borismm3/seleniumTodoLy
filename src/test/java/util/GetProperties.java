@@ -10,7 +10,6 @@ public class GetProperties {
     private String host;
     private String user;
     private String pwd;
-    private String hostYopMail;
 
     private GetProperties() {
         Properties properties = new Properties();
@@ -23,8 +22,6 @@ public class GetProperties {
                 host = properties.getProperty("host");
                 user = properties.getProperty("user");
                 pwd = properties.getProperty("pwd");
-                hostYopMail = properties.getProperty("hostTaskOne");
-
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -51,9 +48,5 @@ public class GetProperties {
 
     public String getPwd() {
         return pwd;
-    }
-
-    public String getHostYopMail() {
-        return hostYopMail;
     }
 }

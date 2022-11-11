@@ -14,10 +14,10 @@ public class Grid implements IBrowser {
     public WebDriver create() {
         WebDriver driver;
         ChromeOptions options = new ChromeOptions();
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability(ChromeOptions.CAPABILITY, options);
+        //DesiredCapabilities capabilities = new DesiredCapabilities();
+        //capabilities.setCapability(ChromeOptions.CAPABILITY, options);
         try {
-            driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capabilities);
+            driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), options);
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
             driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
         } catch (MalformedURLException e) {
