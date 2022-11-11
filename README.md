@@ -1,4 +1,4 @@
-# Selenium [yopmail.com](https://yopmail.com/)
+# Selenium [yopmail.com](https://yopmail.com/) and [todoist.com](https://todoist.com/)
 CHALLENGE BOOTCAMP MOJIX: 
 Task 1. Send an email and check if the email has arrived
 
